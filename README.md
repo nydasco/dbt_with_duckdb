@@ -1,10 +1,13 @@
-Welcome to your new dbt project!
+This is a simple example of leveraging dbt with DuckDB to create a fact and dimension model from source csv files.
 
 ### Using the starter project
 
 Try running the following commands:
+- dbt snapshot
 - dbt run
 - dbt test
+- dbt docs generate
+- dbt docs serve
 
 
 ### Resources:
