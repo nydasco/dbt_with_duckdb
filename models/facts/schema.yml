@@ -1,0 +1,40 @@
+
+version: 2
+
+models:
+  - name: fct_sale
+    description: "A fact table containing sales data, with a grain of sales per day per client employee and region relationship"
+    columns:
+      - name: client_hk
+        description: "A foreign key to the client dimension"
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_client')
+              field: client_hk
+
+      - name: employee_hk
+        description: "A foreign key to the employee dimension"
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_employee')
+              field: employee_hk
+
+      - name: region_hk
+        description: "A foreign key to the region dimension"
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_region')
+              field: region_hk
+
+      - name: sale_date
+        description: "The date of the sale"
+        data_tests:
+          - not_null
+          
+      - name: sale_amount
+        description: "The amount of the sale expressed in dollars"
+        data_tests:
+          - not_null

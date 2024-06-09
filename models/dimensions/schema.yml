@@ -1,0 +1,56 @@
+
+version: 2
+
+models:
+  - name: dim_client
+    description: "A dimension table containing client information"
+    columns:
+      - name: client_hk
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+      - name: client_bk
+        description: "The business key for this table"
+        data_tests:
+          - unique
+          - not_null
+      - name: client_name
+        description: "The name of the client in the format 'Last Name, First Name'"
+        data_tests:
+          - not_null
+
+  - name: dim_employee
+    description: "A dimension table containing employee information"
+    columns:
+      - name: employee_hk
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+      - name: employee_bk
+        description: "The business key for this table"
+        data_tests:
+          - unique
+          - not_null
+      - name: employee_name
+        description: "The name of the employee in the format 'Last Name, First Name'"
+        data_tests:
+          - not_null
+      - name: department_name
+        description: "The name of the department the employee belongs to"
+        data_tests:
+          - not_null
+
+  - name: dim_region
+    description: "A dimension table containing a list of regions"
+    columns:
+      - name: region_hk
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+      - name: region_name
+        description: "The name of the region"
+        data_tests:
+          - not_null
