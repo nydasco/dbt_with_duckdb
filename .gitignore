@@ -4,3 +4,4 @@ dbt_packages/
 logs/
 venv/
 *.duckdb*
+.DS_Store
