@@ -1,0 +1,21 @@
+version: 2
+
+exposures:
+
+  - name: sales_dashboard
+    label: Sales by day
+    type: dashboard
+    maturity: high
+    url: https://bi.tool/dashboards/sales
+    description: >
+      A dashboard showing sales by day, with a breakdown by customer, employee and region.
+
+    depends_on:
+      - ref('fct_sale')
+      - ref('dim_client')
+      - ref('dim_employee')
+      - ref('dim_region')
+
+    owner:
+      name: Andy Sawyer
+      email: andy@dont_spam_me.com

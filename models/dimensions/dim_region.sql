@@ -10,9 +10,10 @@ region AS (
         MD5(region) AS region_hk,
         region AS region_name
     FROM
-        {{ source('external_source', 'sale')}}
+        {{ ref('snp_sale')}}
     WHERE
         1 = 1
+        AND dbt_valid_to IS NULL
         AND region IS NOT NULL
 ),
 

@@ -11,9 +11,10 @@ client AS (
         id AS client_bk,
         CONCAT(last_name, ', ', first_name) AS client_name
     FROM
-        {{ source('external_source', 'client')}}
+        {{ ref('snp_client')}}
     WHERE
         1 = 1
+        AND dbt_valid_to IS NULL
 ),
 
 final AS (

@@ -10,9 +10,10 @@ department AS (
         id AS department_bk,
         department AS department_name
     FROM
-        {{ source('external_source', 'department')}}
+        {{ ref('snp_department')}}
     WHERE
         1 = 1
+        AND dbt_valid_to IS NULL
 ),
 
 employee AS (
@@ -22,9 +23,10 @@ employee AS (
         CONCAT(last_name, ', ', first_name) AS employee_name,
         department_id AS department_bk
     FROM
-        {{ source('external_source', 'employee')}}
+        {{ ref('snp_employee')}}
     WHERE
         1 = 1
+        AND dbt_valid_to IS NULL
 ),
 
 final AS (

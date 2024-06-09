@@ -1,0 +1,15 @@
+
+version: 2
+
+snapshots:
+  - name: snp_client
+    description: "A snapshot of the client source table checking all columns for changes"
+
+  - name: snp_department
+    description: "A snapshot of the department source table checking all columns for changes"
+
+  - name: snp_employee
+    description: "A snapshot of the employee source table checking all columns for changes"
+
+  - name: snp_sale
+    description: "A snapshot of the sale source table checking all columns for changes"

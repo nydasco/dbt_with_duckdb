@@ -10,7 +10,7 @@ d_client AS (
         client_hk,
         client_bk
     FROM
-        {{ ref('dim_client')}}
+        {{ ref('dim_client') }}
     WHERE
         1 = 1
 ),
@@ -20,7 +20,7 @@ d_employee AS (
         employee_hk,
         employee_bk
     FROM
-        {{ ref('dim_employee')}}
+        {{ ref('dim_employee') }}
     WHERE
         1 = 1
 ),
@@ -30,7 +30,7 @@ d_region AS (
         region_hk,
         region_name
     FROM
-        {{ ref('dim_region')}}
+        {{ ref('dim_region') }}
     WHERE
         1 = 1
 ),
@@ -43,7 +43,7 @@ sale AS (
         sale.date::DATE AS sale_date,
         SUM(sale.sale) AS sale_amount
     FROM
-        {{ source('external_source', 'sale')}}
+        {{ ref('snp_sale') }} AS sale
         LEFT JOIN d_client
             ON COALESCE(sale.client_id, '-1') = d_client.client_bk
         LEFT JOIN d_employee
@@ -52,6 +52,7 @@ sale AS (
             ON COALESCE(sale.region, 'Unknown') = d_region.region_name
     WHERE
         1 = 1
+        AND sale.dbt_valid_to IS NULL
     GROUP BY
         client_hk,
         employee_hk,
