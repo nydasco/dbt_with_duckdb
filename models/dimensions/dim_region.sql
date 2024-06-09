@@ -1,6 +1,5 @@
 {{ 
     config(
-        materialized='table',
         enabled=true
         )
 }}
@@ -11,7 +10,7 @@ region AS (
         MD5(region) AS region_hk,
         region AS region_name
     FROM
-        {{ ref('sale')}}
+        {{ source('external_source', 'sale')}}
     WHERE
         1 = 1
         AND region IS NOT NULL

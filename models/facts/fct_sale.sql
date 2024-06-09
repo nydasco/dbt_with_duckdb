@@ -1,6 +1,5 @@
 {{ 
     config(
-        materialized='table',
         enabled=true
         )
 }}
@@ -41,10 +40,10 @@ sale AS (
         COALESCE(d_client.client_hk, '-2') AS client_hk,
         COALESCE(d_employee.employee_hk, '-2') AS employee_hk,
         COALESCE(d_region.region_hk, '-2') AS region_hk,
-        strptime(sale.date, '%d/%m/%Y')::DATE AS sale_date,
+        sale.date::DATE AS sale_date,
         SUM(sale.sale) AS sale_amount
     FROM
-        {{ ref('sale')}}
+        {{ source('external_source', 'sale')}}
         LEFT JOIN d_client
             ON COALESCE(sale.client_id, '-1') = d_client.client_bk
         LEFT JOIN d_employee

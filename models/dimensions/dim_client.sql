@@ -1,6 +1,5 @@
 {{ 
     config(
-        materialized='table',
         enabled=true
         )
 }}
@@ -12,7 +11,7 @@ client AS (
         id AS client_bk,
         CONCAT(last_name, ', ', first_name) AS client_name
     FROM
-        {{ ref('client')}}
+        {{ source('external_source', 'client')}}
     WHERE
         1 = 1
 ),

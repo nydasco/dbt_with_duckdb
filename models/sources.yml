@@ -1,0 +1,9 @@
+sources:
+  - name: external_source
+    meta:
+      external_location: "demo_files/{name}.csv"
+    tables:
+      - name: client
+      - name: department
+      - name: employee
+      - name: sale

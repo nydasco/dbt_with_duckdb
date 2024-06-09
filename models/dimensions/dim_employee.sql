@@ -1,6 +1,5 @@
 {{ 
     config(
-        materialized='table',
         enabled=true
         )
 }}
@@ -11,7 +10,7 @@ department AS (
         id AS department_bk,
         department AS department_name
     FROM
-        {{ ref('department')}}
+        {{ source('external_source', 'department')}}
     WHERE
         1 = 1
 ),
@@ -23,7 +22,7 @@ employee AS (
         CONCAT(last_name, ', ', first_name) AS employee_name,
         department_id AS department_bk
     FROM
-        {{ ref('employee')}}
+        {{ source('external_source', 'employee')}}
     WHERE
         1 = 1
 ),
