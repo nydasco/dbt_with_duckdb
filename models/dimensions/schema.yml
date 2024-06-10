@@ -5,12 +5,12 @@ models:
   - name: dim_client
     description: "A dimension table containing client information"
     columns:
-      - name: client_hk
+      - name: _client_hk
         description: "The primary key for this table"
         data_tests:
           - unique
           - not_null
-      - name: client_bk
+      - name: _client_bk
         description: "The business key for this table"
         data_tests:
           - unique
@@ -21,14 +21,14 @@ models:
           - not_null
 
   - name: dim_employee
-    description: "A dimension table containing employee information"
+    description: "A type 2 dimension table containing employee information, tracking changes across all attributes"
     columns:
-      - name: employee_hk
+      - name: _employee_hk
         description: "The primary key for this table"
         data_tests:
           - unique
           - not_null
-      - name: employee_bk
+      - name: _employee_bk
         description: "The business key for this table"
         data_tests:
           - unique
@@ -45,7 +45,7 @@ models:
   - name: dim_region
     description: "A dimension table containing a list of regions"
     columns:
-      - name: region_hk
+      - name: _region_hk
         description: "The primary key for this table"
         data_tests:
           - unique
