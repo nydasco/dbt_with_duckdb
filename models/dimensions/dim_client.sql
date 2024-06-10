@@ -8,7 +8,7 @@ WITH
 first_record AS (
     SELECT
         id AS _client_bk,
-        min(dbt_valid_from) AS _created_datetime
+        min(dbt_valid_from)::TIMESTAMP AS _created_datetime
     FROM
         {{ ref('snp_client')}}
     GROUP BY
@@ -19,7 +19,7 @@ client AS (
     SELECT
         MD5(id::VARCHAR) AS _client_hk,
         id AS _client_bk,
-        dbt_valid_from AS _modified_datetime,
+        dbt_valid_from::TIMESTAMP AS _modified_datetime,
         CASE 
             WHEN dbt_valid_to IS NULL THEN False
             ELSE True
@@ -47,16 +47,16 @@ final AS (
     SELECT
         '-1' AS _client_hk,
         -1 AS _client_bk,
-        '1900-01-01 00:00:00' AS _created_datetime,
-        '1900-01-01 00:00:00' AS _modified_datetime,
+        '1900-01-01 00:00:00'::TIMESTAMP AS _created_datetime,
+        '1900-01-01 00:00:00'::TIMESTAMP AS _modified_datetime,
         False AS _is_deleted,
         'Not Applicable' AS client_name
     UNION
     SELECT
         '-2' AS _client_hk,
         -2 AS _client_bk,
-        '1900-01-01 00:00:00' AS _created_datetime,
-        '1900-01-01 00:00:00' AS _modified_datetime,
+        '1900-01-01 00:00:00'::TIMESTAMP AS _created_datetime,
+        '1900-01-01 00:00:00'::TIMESTAMP AS _modified_datetime,
         False AS _is_deleted,
         'Unknown' AS client_name
 )

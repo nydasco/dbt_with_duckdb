@@ -8,7 +8,7 @@ WITH
 first_record AS (
     SELECT
         region AS region_name,
-        min(dbt_valid_from) AS _created_datetime
+        min(dbt_valid_from)::TIMESTAMP AS _created_datetime
     FROM
         {{ ref('snp_sale')}}
     GROUP BY
@@ -37,12 +37,12 @@ final AS (
     UNION
     SELECT
         '-1' AS _region_hk,
-        '1900-01-01 00:00:00' AS _created_datetime,
+        '1900-01-01 00:00:00'::TIMESTAMP AS _created_datetime,
         'Not Applicable' AS region_name
     UNION
     SELECT
         '-2' AS _region_hk,
-        '1900-01-01 00:00:00' AS _created_datetime,
+        '1900-01-01 00:00:00'::TIMESTAMP AS _created_datetime,
         'Unknown' AS region_name
 )
 

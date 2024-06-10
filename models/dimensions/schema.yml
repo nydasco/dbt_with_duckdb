@@ -4,53 +4,105 @@ version: 2
 models:
   - name: dim_client
     description: "A dimension table containing client information"
+    config:
+      contract:
+        enforced: true
     columns:
       - name: _client_hk
         description: "The primary key for this table"
+        data_type: VARCHAR
         data_tests:
           - unique
           - not_null
       - name: _client_bk
         description: "The business key for this table"
+        data_type: BIGINT
         data_tests:
           - unique
           - not_null
+      - name: _created_datetime
+        description: "The datetime the record was created in the data warehouse"
+        data_type: TIMESTAMP
+        data_tests:
+          - not_null
+      - name: _modified_datetime
+        description: "The datetime the record was last updated in the data warehouse"
+        data_type: TIMESTAMP
+        data_tests:
+          - not_null
+      - name: _is_deleted
+        description: "A flag to identify if the record has been deleted from the source system"
+        data_type: BOOLEAN
+        data_tests:
+          - not_null
       - name: client_name
+        data_type: VARCHAR
         description: "The name of the client in the format 'Last Name, First Name'"
         data_tests:
           - not_null
 
   - name: dim_employee
     description: "A type 2 dimension table containing employee information, tracking changes across all attributes"
+    config:
+      contract:
+        enforced: true
     columns:
       - name: _employee_hk
         description: "The primary key for this table"
+        data_type: VARCHAR
         data_tests:
           - unique
           - not_null
       - name: _employee_bk
         description: "The business key for this table"
+        data_type: BIGINT
         data_tests:
-          - unique
+          - not_null
+      - name: _load_datetime
+        description: "The datetime that the record was loaded into the data warehouse"
+        data_type: TIMESTAMP
+        data_tests:
+          - not_null
+      - name: _valid_from_datetime
+        description: "The datetime the record is valid from given this is a Type 2 Dimension"
+        data_type: TIMESTAMP
+        data_tests:
+          - not_null
+      - name: _valid_to_datetime
+        description: "The datetime the record is valid to given this is a Type 2 Dimension"
+        data_type: TIMESTAMP
+        data_tests:
           - not_null
       - name: employee_name
         description: "The name of the employee in the format 'Last Name, First Name'"
+        data_type: VARCHAR
         data_tests:
           - not_null
       - name: department_name
         description: "The name of the department the employee belongs to"
+        data_type: VARCHAR
         data_tests:
           - not_null
 
   - name: dim_region
     description: "A dimension table containing a list of regions"
+    config:
+      contract:
+        enforced: true
     columns:
       - name: _region_hk
         description: "The primary key for this table"
+        data_type: VARCHAR
         data_tests:
           - unique
           - not_null
+      - name: _created_datetime
+        description: "The datetime the record was created in the data warehouse"
+        data_type: TIMESTAMP
+        data_tests:
+          - not_null
       - name: region_name
         description: "The name of the region"
+        data_type: VARCHAR
         data_tests:
           - not_null
