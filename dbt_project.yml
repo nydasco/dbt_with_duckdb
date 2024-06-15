@@ -24,6 +24,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   dbt_with_duckdb:
+    stages:
+      +materialized: view
     dimensions:
       +materialized: table
     facts:

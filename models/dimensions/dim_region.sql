@@ -10,7 +10,7 @@ first_record AS (
         region AS region_name,
         min(dbt_valid_from)::TIMESTAMP AS _created_datetime
     FROM
-        {{ ref('snp_sale')}}
+        {{ ref('stg_sale')}}
     GROUP BY
         region
 ),
@@ -20,7 +20,7 @@ region AS (
         MD5(region) AS _region_hk,
         region AS region_name
     FROM
-        {{ ref('snp_sale')}}
+        {{ ref('stg_sale')}}
     WHERE
         region IS NOT NULL
 ),

@@ -1,0 +1,15 @@
+
+version: 2
+
+models:
+  - name: stg_client
+    description: "A staging view containing client information with hard rules applied"
+
+  - name: stg_department
+    description: "A staging view containing department information with hard rules applied"
+
+  - name: stg_employee
+    description: "A staging view containing employee information with hard rules applied"
+
+  - name: stg_sale
+    description: "A staging view containing sales information with hard rules applied"

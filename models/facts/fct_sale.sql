@@ -39,7 +39,7 @@ sale AS (
         sale.date::DATE AS sale_date,
         SUM(sale.sale) AS sale_amount
     FROM
-        {{ ref('snp_sale') }} AS sale
+        {{ ref('stg_sale') }} AS sale
         LEFT JOIN d_client
             ON COALESCE(sale.client_id, '-1') = d_client._client_bk
         LEFT JOIN d_employee

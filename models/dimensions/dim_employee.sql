@@ -13,7 +13,7 @@ se AS (
 		dbt_valid_from,
 		COALESCE(dbt_valid_to, '2999-12-31') AS dbt_valid_to
 	FROM
-		{{ ref('snp_employee') }}
+		{{ ref('stg_employee') }}
 ),
 sd AS (
 	SELECT 
@@ -22,7 +22,7 @@ sd AS (
 		dbt_valid_from,
 		COALESCE(dbt_valid_to, '2999-12-31') AS dbt_valid_to
 	FROM
-		{{ ref('snp_department') }}
+		{{ ref('stg_department') }}
 ),
 join_tables AS (
 	SELECT

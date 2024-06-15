@@ -10,7 +10,7 @@ first_record AS (
         id AS _client_bk,
         min(dbt_valid_from)::TIMESTAMP AS _created_datetime
     FROM
-        {{ ref('snp_client')}}
+        {{ ref('stg_client')}}
     GROUP BY
         id
 ),
@@ -26,7 +26,7 @@ client AS (
         END AS _is_deleted,
         CONCAT(last_name, ', ', first_name) AS client_name
     FROM
-        {{ ref('snp_client')}}
+        {{ ref('stg_client')}}
     QUALIFY
         ROW_NUMBER() OVER (PARTITION BY id ORDER BY dbt_valid_from DESC) = 1
 ),
