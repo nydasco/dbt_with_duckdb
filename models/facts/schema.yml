@@ -3,32 +3,9 @@ version: 2
 
 models:
   - name: fct_sale
+    latest_version: 2
     description: "A fact table containing sales data, with a grain of sales per day per client employee and region relationship"
     columns:
-      - name: _client_hk
-        description: "A foreign key to the client dimension"
-        data_tests:
-          - not_null
-          - relationships:
-              to: ref('dim_client')
-              field: _client_hk
-
-      - name: _employee_hk
-        description: "A foreign key to the employee dimension"
-        data_tests:
-          - not_null
-          - relationships:
-              to: ref('dim_employee')
-              field: _employee_hk
-
-      - name: _region_hk
-        description: "A foreign key to the region dimension"
-        data_tests:
-          - not_null
-          - relationships:
-              to: ref('dim_region')
-              field: _region_hk
-
       - name: sale_date
         description: "The date of the sale"
         data_tests:
@@ -38,3 +15,62 @@ models:
         description: "The amount of the sale expressed in dollars"
         data_tests:
           - not_null
+
+    versions:
+      - v: 1
+        columns:
+        - name: _client_hk
+          description: "A foreign key to the client dimension"
+          data_type: VARCHAR
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_client', v='1')
+                field: _client_hk
+
+        - name: _employee_hk
+          description: "A foreign key to the employee dimension"
+          data_type: VARCHAR
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_employee', v='1')
+                field: _employee_hk
+
+        - name: _region_hk
+          description: "A foreign key to the region dimension"
+          data_type: VARCHAR
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_region', v='1')
+                field: _region_hk
+
+      - v: 2
+        columns:
+        - name: _client_hk
+          description: "A foreign key to the client dimension"
+          data_type: HUGEINT
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_client', v='2')
+                field: _client_hk
+
+        - name: _employee_hk
+          description: "A foreign key to the employee dimension"
+          data_type: HUGEINT
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_employee', v='2')
+                field: _employee_hk
+
+        - name: _region_hk
+          description: "A foreign key to the region dimension"
+          data_type: HUGEINT
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_region', v='2')
+                field: _region_hk

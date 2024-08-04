@@ -3,17 +3,12 @@ version: 2
 
 models:
   - name: dim_client
+    latest_version: 2
     description: "A dimension table containing client information"
     config:
       contract:
         enforced: true
     columns:
-      - name: _client_hk
-        description: "The primary key for this table"
-        data_type: VARCHAR
-        data_tests:
-          - unique
-          - not_null
       - name: _client_bk
         description: "The business key for this table"
         data_type: BIGINT
@@ -40,19 +35,31 @@ models:
         description: "The name of the client in the format 'Last Name, First Name'"
         data_tests:
           - not_null
+    versions:
+      - v: 1
+        columns:
+        - name: _client_hk
+          description: "The primary key for this table"
+          data_type: VARCHAR
+          data_tests:
+            - unique
+            - not_null
+      - v: 2
+        columns:
+          - name: _client_hk
+            description: "The primary key for this table"
+            data_type: HUGEINT
+            data_tests:
+              - unique
+              - not_null
 
   - name: dim_employee
+    latest_version: 2
     description: "A type 2 dimension table containing employee information, tracking changes across all attributes"
     config:
       contract:
         enforced: true
     columns:
-      - name: _employee_hk
-        description: "The primary key for this table"
-        data_type: VARCHAR
-        data_tests:
-          - unique
-          - not_null
       - name: _employee_bk
         description: "The business key for this table"
         data_type: BIGINT
@@ -83,19 +90,31 @@ models:
         data_type: VARCHAR
         data_tests:
           - not_null
+    versions:
+      - v: 1
+        columns:
+        - name: _employee_hk
+          description: "The primary key for this table"
+          data_type: VARCHAR
+          data_tests:
+            - unique
+            - not_null
+      - v: 2
+        columns:
+          - name: _employee_hk
+            description: "The primary key for this table"
+            data_type: HUGEINT
+            data_tests:
+              - unique
+              - not_null
 
   - name: dim_region
+    latest_version: 2
     description: "A dimension table containing a list of regions"
     config:
       contract:
         enforced: true
     columns:
-      - name: _region_hk
-        description: "The primary key for this table"
-        data_type: VARCHAR
-        data_tests:
-          - unique
-          - not_null
       - name: _created_datetime
         description: "The datetime the record was created in the data warehouse"
         data_type: TIMESTAMP
@@ -106,3 +125,20 @@ models:
         data_type: VARCHAR
         data_tests:
           - not_null
+    versions:
+      - v: 1
+        columns:
+        - name: _region_hk
+          description: "The primary key for this table"
+          data_type: VARCHAR
+          data_tests:
+            - unique
+            - not_null
+      - v: 2
+        columns:
+          - name: _region_hk
+            description: "The primary key for this table"
+            data_type: HUGEINT
+            data_tests:
+              - unique
+              - not_null

@@ -11,10 +11,10 @@ exposures:
       A dashboard showing sales by day, with a breakdown by customer, employee and region.
 
     depends_on:
-      - ref('fct_sale')
-      - ref('dim_client')
-      - ref('dim_employee')
-      - ref('dim_region')
+      - ref('fct_sale', v='1')
+      - ref('dim_client', v='1')
+      - ref('dim_employee', v='1')
+      - ref('dim_region', v='1')
 
     owner:
       name: Andy Sawyer

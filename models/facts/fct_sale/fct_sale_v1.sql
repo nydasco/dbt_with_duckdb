@@ -10,7 +10,7 @@ d_client AS (
         _client_hk,
         _client_bk
     FROM
-        {{ ref('dim_client') }}
+        {{ ref('dim_client', v='1') }}
 ),
 
 d_employee AS (
@@ -20,7 +20,7 @@ d_employee AS (
         _valid_from_datetime,
         _valid_to_datetime
     FROM
-        {{ ref('dim_employee') }}
+        {{ ref('dim_employee', v='1') }}
 ),
 
 d_region AS (
@@ -28,7 +28,7 @@ d_region AS (
         _region_hk,
         region_name
     FROM
-        {{ ref('dim_region') }}
+        {{ ref('dim_region', v='1') }}
 ),
 
 sale AS (

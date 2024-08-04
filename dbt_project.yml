@@ -23,6 +23,8 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 models:
+  post-hook:
+    - "{{ create_latest_version_view() }}"
   dbt_with_duckdb:
     stages:
       +materialized: view
