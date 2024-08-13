@@ -17,7 +17,8 @@ final AS (
         date_id,
         datepart('day', date_id)::INT AS day_number,
         strftime(date_id, '%A, %-d %B %Y') AS formatted_date,
-        CONCAT(datepart('year', date_id)::STRING, lpad(datepart('month', date_id)::STRING, 2, '0'))::INT AS _year_month_sort,
+        CONCAT(datepart('year', date_id)::STRING, 
+            lpad(datepart('month', date_id)::STRING, 2, '0'))::INT AS _year_month_sort,
         strftime(date_id, '%B %Y') AS month_year,
         datepart('year', date_id)::INT AS year_number,
         datepart('quarter', date_id)::INT AS quarter_number
