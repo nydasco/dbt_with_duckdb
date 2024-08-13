@@ -106,3 +106,51 @@ models:
         data_type: VARCHAR
         data_tests:
           - not_null
+
+  - name: dim_date
+    description: "A dimension table containing a range of dates"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: _date_hk
+        description: "The primary key for this table which is a smartint"
+        data_type: INT
+        data_tests:
+          - unique
+          - not_null
+      - name: date_id
+        description: "The date in standard date format"
+        data_type: DATE
+        data_tests:
+          - not_null
+      - name: day_number
+        description: "The number for the day of the month"
+        data_type: INT
+        data_tests:
+          - not_null
+      - name: formatted_date
+        description: "The date in the format 'Friday, 12 January 2024'"
+        data_type: VARCHAR
+        data_tests:
+          - not_null
+      - name: _year_month_sort
+        description: "The year and month as a 6-digit number for sorting"
+        data_type: INT
+        data_tests:
+          - not_null
+      - name: month_year
+        description: "The month and year"
+        data_type: VARCHAR
+        data_tests:
+          - not_null
+      - name: year_number
+        description: "The year."
+        data_type: INT
+        data_tests:
+          - not_null
+      - name: quarter_number
+        description: "The calendar year quarter as a single digit"
+        data_type: INT
+        data_tests:
+          - not_null

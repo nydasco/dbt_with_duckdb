@@ -33,6 +33,9 @@ models:
         description: "The date of the sale"
         data_tests:
           - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: _date_hk
           
       - name: sale_amount
         description: "The amount of the sale expressed in dollars"
