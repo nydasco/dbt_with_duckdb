@@ -1,0 +1,44 @@
+# In Cube, views are used to expose slices of your data graph and act as data marts.
+# You can control which measures and dimensions are exposed to BIs or data apps,
+# as well as the direction of joins between the exposed cubes.
+# You can learn more about views in documentation here - https://cube.dev/docs/schema/reference/view
+
+
+# The following example shows a view defined on top of orders and customers cubes.
+# Both orders and customers cubes are exposed using the "includes" parameter to
+# control which measures and dimensions are exposed.
+# Prefixes can also be applied when exposing measures or dimensions.
+# In this case, the customers' city dimension is prefixed with the cube name,
+# resulting in "customers_city" when querying the view.
+
+views:
+  - name: sales_view
+
+    cubes:
+      - join_path: fct_sale
+        includes:
+          - sale_count
+          - sale_amount
+          - avg_sale_amount
+
+      - join_path: fct_sale.dim_client
+        prefix: false
+        includes:
+          - client_name
+
+      - join_path: fct_sale.dim_date
+        prefix: false
+        includes:
+          - name: formatted_date
+            alias: sales_date
+
+      - join_path: fct_sale.dim_employee
+        prefix: false
+        includes:
+          - employee_name
+          - department_name
+
+      - join_path: fct_sale.dim_region
+        prefix: false
+        includes:
+          - region_name

@@ -1,0 +1,46 @@
+cubes:
+  - name: dim_date
+    sql_table: prod.dim_date
+    data_source: default
+    public: false
+
+    joins: []
+
+    dimensions:
+      - name: _date_hk
+        sql: _date_hk
+        type: number
+        primary_key: true
+        public: false
+
+      - name: date_id
+        sql: date_id
+        type: time
+
+      - name: formatted_date
+        sql: formatted_date
+        type: string
+
+      - name: month
+        sql: month_year
+        type: string
+
+      - name: year
+        sql: year_number
+        type: string
+
+      - name: quarter_number
+        sql: quarter_number
+        type: string
+        public: false
+
+      - name: quarter
+        sql: "CONCAT('Quarter ', {quarter_number})"
+        type: string
+
+    measures: []
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here.
+      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
+

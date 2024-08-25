@@ -1,0 +1,33 @@
+cubes:
+  - name: dim_employee
+    sql_table: prod.dim_employee
+    data_source: default
+    public: false
+
+    joins: []
+
+    dimensions:
+      - name: _employee_hk
+        sql: _employee_hk
+        type: number
+        primary_key: true
+        public: false
+
+      - name: employee_name
+        sql: employee_name
+        type: string
+
+      - name: department_name
+        sql: department_name
+        type: string
+
+    measures:
+      - name: active_count
+        type: count
+        filters:
+          - sql: "{CUBE}._valid_to_datetime = '2999-12-31 00:00:00.000'"
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here.
+      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
+

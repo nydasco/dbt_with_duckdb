@@ -1,0 +1,44 @@
+cubes:
+  - name: fct_sale
+    sql_table: prod.fct_sale
+    data_source: default
+    public: false
+
+    joins:
+      - name: dim_client
+        relationship: one_to_many
+        sql: "{CUBE}._client_hk = {dim_client._client_hk}"
+      - name: dim_date
+        relationship: one_to_many
+        sql: "{CUBE}._date_hk = {dim_date._date_hk}"
+      - name: dim_employee
+        relationship: one_to_many
+        sql: "{CUBE}._employee_hk = {dim_employee._employee_hk}"
+      - name: dim_region
+        relationship: one_to_many
+        sql: "{CUBE}._region_hk = {dim_region._region_hk}"
+
+    dimensions:
+      - name: id
+        sql: "CONCAT({CUBE}._client_hk, {CUBE}._date_hk, {CUBE}._employee_hk, {CUBE}._region_hk)"
+        type: number
+        primary_key: true
+
+    measures:
+      - name: sale_count
+        type: count
+
+      - name: sale_amount
+        sql: sale_amount
+        type: sum
+        format: currency
+
+      - name: avg_sale_amount
+        sql: sale_amount
+        type: avg
+        format: currency
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here.
+      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
+

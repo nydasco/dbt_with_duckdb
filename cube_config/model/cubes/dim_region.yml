@@ -1,0 +1,28 @@
+cubes:
+  - name: dim_region
+    sql_table: prod.dim_region
+    data_source: default
+
+    joins: []
+
+    dimensions:
+      - name: _region_hk
+        sql: _region_hk
+        type: number
+        primary_key: true
+        public: false
+
+      - name: region_name
+        sql: region_name
+        type: string
+
+    measures:
+      - name: active_count
+        type: count
+        filters:
+          - sql: "{CUBE}._is_deleted = 'false'"
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here.
+      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
+

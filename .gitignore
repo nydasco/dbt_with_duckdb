@@ -6,3 +6,4 @@ logs/
 venv/
 *.duckdb*
 .DS_Store
+.cubestore/

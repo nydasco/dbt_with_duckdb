@@ -1,0 +1,29 @@
+cubes:
+  - name: dim_client
+    sql_table: prod.dim_client
+    data_source: default
+    public: false
+
+    joins: []
+
+    dimensions:
+      - name: _client_hk
+        sql: _client_hk
+        type: number
+        primary_key: true
+        public: false
+
+      - name: client_name
+        sql: client_name
+        type: string
+
+    measures:
+      - name: active_count
+        type: count
+        filters:
+          - sql: "{CUBE}._is_deleted = 'false'"
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here.
+      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
+
