@@ -39,6 +39,9 @@ cubes:
         format: currency
 
     pre_aggregations:
-      # Pre-aggregation definitions go here.
-      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
-
+      - name: department_sales
+        measures:
+          - fct_sale.sale_amount,
+          - fct_sale.avg_sale_amount
+        dimensions:
+          - dim_employee.department_name
