@@ -10,7 +10,7 @@ SELECT
 	client_id,
 	date,
 	LEFT(region, 10)::VARCHAR(10) AS region,
-	sale,
+	sale::NUMERIC(18,2) AS sale,
 	LEFT(dbt_scd_id, 32)::VARCHAR(32) AS dbt_scd_id,
 	dbt_updated_at,
 	dbt_valid_from,
