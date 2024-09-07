@@ -5,3 +5,5 @@ logs/
 venv/
 *.duckdb*
 .DS_Store
+cube_config/
+target-base/
